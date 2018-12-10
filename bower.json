@@ -1,0 +1,24 @@
+{
+  "name": "urf",
+  "description": "URF Stream Graphics Bundle",
+  "main": "",
+  "authors": [
+    "Henry Le Grys"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nodecg-bundle"
+  ],
+  "homepage": "https://urfonline.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
+}

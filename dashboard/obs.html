@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="styles/global.css"/>
+	</head>
+	<body>
+        <button id="cut">Cut</button>
+        <button id="fade">Fade</button>
+        <p>Set Scene</p>
+        <div id="scenes">
+
+        </div>
+        <script>
+        document.querySelector("#cut").onclick = function(ev) {
+            nodecg.sendMessage("obs:cut");
+        }
+
+        document.querySelector("#fade").onclick = function(ev) {
+            nodecg.sendMessage("obs:transition", "Fade");
+        }
+
+        let scenesEl = document.querySelector("#scenes");
+        nodecg.Replicant("obs:scenes").on("change", function(scenes) {
+            scenesEl.innerHTML = "";
+
+            scenes.forEach((scene) => {
+                let btn = document.createElement("button");
+
+                btn.innerText = scene.name;
+                btn.style = "margin: 0 5px 5px 0;";
+                btn.onclick = function() {
+                    let name = `${scene.name}`;
+                    nodecg.sendMessage("obs:set-preview", name);
+                }
+
+                scenesEl.appendChild(btn);
+            });
+        });
+        </script>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+{
+  "name": "urf",
+  "version": "0.0.0",
+  "description": "URF Stream Graphics Bundle",
+  "homepage": "https://urfonline.com",
+  "author": {
+    "name": "Henry Le Grys",
+    "email": "tech@urfonline.com",
+    "url": "https://offbeatwit.ch"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "urf",
+        "title": "URF",
+        "width": 4,
+        "file": "urf.html",
+        "headerColor": "b02727"
+      },
+      {
+        "name": "urf-jingles",
+        "title": "Jingles",
+        "width": 4,
+        "file": "jingles.html",
+        "headerColor": "daa520"
+      },
+      {
+        "name": "urf-obs-control",
+        "title": "OBS",
+        "width": 2,
+        "file": "obs.html",
+        "headerColor": "008b8b"
+      }
+    ],
+    "assetCategories": [
+      {
+        "name": "jingles",
+        "title": "Memes & Jingles",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png"
+        ]
+      }
+    ],
+    "graphics": [
+      {
+        "file": "index.html",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "file": "nowplaying.html",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "MIT",
+  "dependencies": {
+    "got": "^9.3.2",
+    "obs-websocket-js": "^1.2.0"
+  }
+}

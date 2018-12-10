@@ -1,0 +1,141 @@
+@import "fonts/bebas.css";
+
+body {
+    margin: 0;
+    font-family: "Bebas Neue";
+    color: #fff;
+    overflow: hidden;
+}
+
+h1, h2, h3 {
+    font-weight: 400;
+}
+
+.filler-bg {
+    position: absolute;
+    background: #b02727;
+    top: 0;
+    left: 0;
+    z-index: -6;
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 5px 20px;
+    box-sizing: border-box;
+}
+
+.post {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.post > span {
+    display: block;
+}
+
+.post-content {
+    position: absolute;
+    bottom: 128px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(176, 39, 39, 0), rgba(176, 39, 39, 0.3) 45%, #801111);
+}
+
+.post-content .title {
+    font-size: 60px;
+    text-shadow: 2px 2px 0px #111;
+}
+
+.post-content .time {
+    font-size: 40px;
+}
+
+.post-content .desc {
+    font-size: 32px;
+}
+
+.post img.cover {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -5px;
+    z-index: -5;
+}
+
+.bottom {
+    position: absolute;
+    height: 128px;
+    width: 100%;
+    background: #801111;
+    bottom: 0;
+    border-top: 3px solid #000;
+    z-index: 20;
+}
+
+.bottom .spinner {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    left: -64px;
+}
+
+.bottom .content {
+    position: absolute;
+    left: 80px;
+    height: 100%;
+}
+
+.bottom .content > div {
+    display: inline-block;
+    position: relative;
+    /* box-sizing: border-box; */
+    top: 64px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.content .now-playing {
+    font-size: 30px;
+    vertical-align: top;
+    width: 700px;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+.content .socials span {
+    display: inline-block;
+    width: 240px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.content .socials span i.fa {
+    margin-right: 8px;
+}
+
+.content .socials span.fullwidth {
+    width: 100%;
+}
+
+.promo-enter {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.promo-enter-active, .promo-leave-active {
+    transition: opacity 2s;
+}
+
+.promo-leave-active {
+    opacity: 0;
+}

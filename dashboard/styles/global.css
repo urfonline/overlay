@@ -1,0 +1,42 @@
+button {
+    padding: 5px;
+    background: lightseagreen;
+    text-transform: uppercase;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    transition: filter .25s;
+    font-weight: 600;
+}
+
+button.big {
+    padding: 10px;
+}
+
+button.success {
+    background: springgreen;
+}
+
+button.warning {
+    background: darkorange;
+}
+
+button.error {
+    background: #ff4136;
+}
+
+button:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+input[type=text] {
+    padding: 5px;
+    background: #fff;
+    border: 0;
+    border-radius: 4px;
+}
+
+.monospace {
+    font-family: monospace;
+}

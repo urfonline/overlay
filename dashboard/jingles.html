@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="styles/global.css"/>
+        <link rel="stylesheet" href="styles/jingles-dash.css"/>
+        <script src="../bower_components/vue/dist/vue.min.js"></script>
+	</head>
+	<body>
+        <div id="app-mount">
+            <div class="global-buttons">
+                <input type="checkbox" v-model="managerMode"/>
+                <label for="checkbox">{{ managerMode ? "Manager Enabled" : "Manager Disabled" }}</label>
+            </div>
+            <div class="jingle-manager" v-if="managerMode">
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="jingle in jingles">
+                            <td>{{ jingle.name }}</td>
+                            <td>
+                                <button class="btn rename" v-on:click="rename(jingle)">Rename</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="jingle-list" v-else>
+                <span class="jingle" v-for="jingle in jingles">
+                    <button v-on:click="trigger(jingle)">{{ jingle.name }}</button>
+                </div>
+            </div>
+        </div>
+		<script src="scripts/jingles.js"></script>
+	</body>
+</html>

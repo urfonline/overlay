@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="styles/global.css"/>
+		<style>
+            .quick-access button {
+                width: 100%;
+                display: block;
+            }
+		</style>
+	</head>
+	<body>
+        <div class="quick-access">
+            <button class="big success" id="setup-show">Start Show</button>
+        </div>
+        <br/>
+        <div class="notifier-custom">
+            <input type="text" placeholder="Message title" id="message-title"></input>
+		    <input type="text" placeholder="Type your message..." id="message"></input>
+            <button id="submit">Push Notifier</button>
+        </div>
+        <script>
+        const nowformatter = new Intl.DateTimeFormat("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+        function getCurrentHour() {
+            let now = new Date();
+
+            now.setMinutes(0);
+            now.setSeconds(0);
+
+            let day = (now.getDay() + 6) % 7;
+            return { h: nowformatter.format(now), d: day };
+        }
+
+        document.getElementById("setup-show").onclick = function(ev) {
+            nodecg.readReplicant("urf:shows", function(shows) {
+                let now = getCurrentHour();
+                let slot = shows.find((slot) => {
+                    return slot.startTime == now.h && slot.day == now.d;
+                });
+
+                if (slot != null) {
+                    nodecg.sendMessage("urf:trigger-notify", { title: slot.show.name, body: "Live in the studio" });
+                }
+            });
+        }
+
+        document.getElementById("submit").onclick = function(ev) {
+            var tel = document.getElementById("message-title");
+            var el = document.getElementById("message");
+            var title = tel.value;
+            var msg = el.value;
+
+            nodecg.sendMessage("urf:trigger-notify", { title: title, body: msg });
+
+            el.value = tel.value = "";
+        }
+        </script>
+	</body>
+</html>

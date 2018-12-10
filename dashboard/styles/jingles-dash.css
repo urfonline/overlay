@@ -1,0 +1,8 @@
+.jingle button {
+    /* width: 128px; */
+    height: 64px;
+    font-size: unset;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-right: 5px;
+}

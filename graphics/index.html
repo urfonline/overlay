@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="assets/style.css"/>
+        <script src="assets/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app-mount">
+            <div class="jingles">
+                <transition-group name="jingle-anim">
+                    <div class="jingle-item" v-for="jingle in jingles" v-bind:key="jingle.sum">
+                        <img v-bind:src="jingle.url"/>
+                    </div>
+                </transition-group>
+            </div>
+
+            <transition name="notifier">
+                <div class="notifier" v-if="notification != null">
+                    <video src="assets/spinner.webm" loop autoplay></video>
+                    <div class="content">
+                        <div class="title">{{ notification.title }}</div>
+                        <div class="body">{{ notification.body }}</div>
+                    </div>
+                </div>
+            </transition>
+        </div>
+        <script src="assets/client.js"></script>
+    </body>
+</html>

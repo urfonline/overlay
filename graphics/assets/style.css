@@ -1,0 +1,79 @@
+@import "fonts/bebas.css";
+
+body {
+    font-family: sans-serif;
+    background: transparent;
+    overflow: hidden;
+}
+
+.monospace {
+    font-family: monospace;
+}
+
+.jingle-item {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    top: 40%;
+    left: 50%;
+}
+
+.jingle-item img {
+    width: 128px;
+    height: 128px;
+}
+
+.jingle-anim-enter-active, .jingle-anim-leave-active {
+    transition: all 2s;
+}
+
+.jingle-anim-enter {
+    left: -260px;
+    bottom: 300px;
+}
+
+.jingle-anim-leave-active {
+    left: 120%;
+    bottom: 300px;
+}
+
+.notifier {
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    width: 550px;
+    height: 128px;
+    background: #000;
+    border-top-left-radius: 64px;
+    border-bottom-left-radius: 64px;
+}
+
+.notifier video {
+    width: 128px;
+    height: 128px;
+}
+
+.notifier .content {
+    vertical-align: top;
+    padding: 5px 15px;
+    color: #fff;
+    display: inline-block;
+    font-size: 32px;
+    font-family: "Bebas Neue";
+}
+
+.notifier .content .title {
+    font-size: 48px;
+}
+
+.notifier.notifier-enter {
+    right: -550px;
+}
+
+.notifier-enter-active, .notifier-leave-active {
+    transition: all 2s;
+}
+
+.notifier-leave-active {
+    right: -550px;
+}

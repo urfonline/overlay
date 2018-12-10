@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="assets/nowplaying.css"/>
+        <link rel="stylesheet" href="assets/css/fork-awesome.min.css"/>
+        <script src="assets/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app-mount">
+            <div class="top slideshow">
+                <div class="filler-bg"></div>
+                <transition name="promo">
+                    <div class="post" v-if="currentPromo" v-bind:key="currentPromo.id">
+                        <div class="post-content">
+                            <div class="title">{{ currentPromo.show.name }}</div>
+                            <div class="time">Live {{ formatPromoTime() }}</div>
+                            <div class="desc">{{ currentPromo.show.longDescription }}</div>
+                        </div>
+                        <img class="cover" v-if="currentPromo.show.cover.resource != ''" v-bind:src="'https://urf.imgix.net/' + currentPromo.show.cover.resource + '?w=1280&h=592&auto=format&q=80&fit=crop&crop=faces'"/>
+                    </div>
+                </transition>
+            </div>
+            <div class="bottom infobox">
+                <video class="spinner" src="assets/spinner.webm" loop autoplay></video>
+                <div class="content">
+                    <div class="now-playing" v-if="nowplaying != null">
+                        <div>Now Playing: {{ nowplaying.title }}</div>
+                    </div>
+                    <div class="now-playing" v-if="currentShow != null">
+                        <div>Now Online: {{ currentShow.name }}</div>
+                    </div>
+                    <div class="socials">
+                        <span><i class="fa fa-twitter"></i> @urfofficial</span>
+                        <span><i class="fa fa-facebook"></i> URFOfficial</span>
+                        <br/>
+                        <span><i class="fa fa-mixcloud"></i> urfofficial</span>
+                        <span><i class="fa fa-instagram"></i> urfofficial</span>
+                        <br/>
+                        <span class="fullwidth">Listen Live at urfonline.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/scripts/nowplaying.js"></script>
+    </body>
+</html>
