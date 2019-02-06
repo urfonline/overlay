@@ -71,6 +71,11 @@
         "file": "nowplaying.html",
         "width": 1280,
         "height": 720
+      },
+      {
+        "file": "charity_index.html",
+        "width": 1280,
+        "height": 720
       }
     ]
   },

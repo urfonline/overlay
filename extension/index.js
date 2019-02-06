@@ -3,11 +3,13 @@ const got = require("got");
 const obs = require("./plugins/obs");
 const atem = require("./plugins/atem");
 const lastfm = require("./plugins/lastfm");
+const donations = require("./plugins/donations");
 
 module.exports = function (nodecg) {
 	obs.init(nodecg);
 	atem.init(nodecg);
 	lastfm.init(nodecg);
+	donations.init(nodecg);
 
 	got("https://api.urfonline.com/graphql?query={currentSlate{slots{id startTime endTime day show{name shortDescription longDescription banner cover{resource}brandColor category{name color}emojiDescription}}}}", {
 		json: true

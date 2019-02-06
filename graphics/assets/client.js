@@ -2,7 +2,21 @@ const app = new Vue({
     el: "#app-mount",
     data: {
         jingles: [],
-        notification: null
+        donations: 0,
+        donationsTweened: 0,
+        notification: null,
+        queue: [],
+        timer: null
+    },
+    computed: {
+        donationTotal: function() {
+            return this.donationsTweened.toFixed(0);
+        }
+    },
+    watch: {
+        donations: function(val) {
+            TweenLite.to(this.$data, 1.5, { donationsTweened: val });
+        }
     },
     methods: {
         randomX: function() {
@@ -10,6 +24,26 @@ const app = new Vue({
         },
         randomY: function() {
             return Math.floor(Math.random() * window.innerHeight);
+        },
+        pullDonation: function() {
+            var donation = this.queue.shift();
+            if (donation == null || this.notification != null) {
+                this.timer = setTimeout(this.pullDonation, 10000);
+                return;
+            }
+
+            var amount = parseInt(donation.amount).toFixed(0);
+            this.notification = {
+                title: `£${amount} from ${donation.donorDisplayName}`,
+                body: donation.message.slice(0, 40) + (donation.message.length > 40 ? "..." : "")
+            };
+
+            this.timer = setTimeout(this.clearDonation, 8000);
+        },
+        clearDonation: function() {
+            this.notification = null;
+
+            this.timer = setTimeout(this.pullDonation, 3000);
         }
     }
 });
@@ -28,4 +62,14 @@ nodecg.listenFor("urf:trigger-notify", function(notification) {
     setTimeout(function() {
         app.notification = null;
     }, 8000);
+});
+
+nodecg.Replicant("urf:total-raised").on("change", (val) => {
+    app.donations = val;
+});
+
+nodecg.listenFor("urf:donation", (donation) => {
+    app.queue.push(donation);
+
+    if (!app.timer) app.pullDonation();
 });
