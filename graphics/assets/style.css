@@ -41,7 +41,7 @@ body {
     position: absolute;
     bottom: 50px;
     right: 0;
-    width: 550px;
+    width: 650px;
     height: 128px;
     background: #000;
     border-top-left-radius: 64px;
@@ -60,6 +60,7 @@ body {
     display: inline-block;
     font-size: 32px;
     font-family: "Bebas Neue";
+    max-width: 488px;
 }
 
 .notifier .content .title {
@@ -67,7 +68,7 @@ body {
 }
 
 .notifier.notifier-enter {
-    right: -550px;
+    right: -650px;
 }
 
 .notifier-enter-active, .notifier-leave-active {
@@ -75,5 +76,34 @@ body {
 }
 
 .notifier-leave-active {
-    right: -550px;
+    right: -650px;
+}
+
+.donations {
+    position: absolute;
+    display: inline-block;
+    top: 30px;
+    left: 0;
+    width: 400px;
+    padding: 5px 0 3px;
+    background: linear-gradient(45deg, #ea00a0 0%,#009ddb 100%);
+    text-align: center;
+    border-bottom-right-radius: 40px;
+    font-family: "Bebas Neue";
+    color: #fff;
+    vertical-align: middle;
+}
+
+.donations span.stacked {
+    display: inline-block;
+    font-size: 26px;
+    margin-right: 20px;
+    vertical-align: baseline;
+    line-height: 22px;
+}
+
+.donations h1 {
+    display: inline-block;
+    margin: 0;
+    font-size: 60px;
 }

@@ -41,6 +41,13 @@
         "width": 2,
         "file": "obs.html",
         "headerColor": "008b8b"
+      },
+      {
+        "name": "urf-atem-switcher",
+        "title": "Video Mixer",
+        "width": 2,
+        "file": "atem.html",
+        "headerColor": "008b8b"
       }
     ],
     "assetCategories": [
@@ -71,6 +78,7 @@
   "license": "MIT",
   "dependencies": {
     "got": "^9.3.2",
+    "lastfm": "^0.9.3",
     "obs-websocket-js": "^1.2.0"
   }
 }

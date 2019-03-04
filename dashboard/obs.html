@@ -7,6 +7,8 @@
 	<body>
         <button id="cut">Cut</button>
         <button id="fade">Fade</button>
+		<div>Preview: <span id="previewscene">...</span></div>
+		<div>Program: <span id="currentscene">...</span></div>
         <p>Set Scene</p>
         <div id="scenes">
 
@@ -37,6 +39,16 @@
                 scenesEl.appendChild(btn);
             });
         });
+
+		let currentSceneEl = document.querySelector("#currentscene");
+		nodecg.Replicant("obs:currentScene").on("change", function(sceneName) {
+			currentSceneEl.innerText = sceneName;
+		});
+
+		let previewSceneEl = document.querySelector("#previewscene");
+		nodecg.Replicant("obs:currentPreview").on("change", function(sceneName) {
+			previewSceneEl.innerText = sceneName;
+		})
         </script>
 	</body>
 </html>

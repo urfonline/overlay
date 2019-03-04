@@ -25,10 +25,15 @@
         },
         computed: {
             currentShow: function() {
-                if (!this.allShows.find) return null;
+                // if (!this.allShows.find) return null;
 
-                let now = getCurrentHour();
-                let slot = this.allShows.find((slot) => slot.startTime == now.h && slot.day == now.d);
+                let now = moment();
+                let slot = Array.prototype.find.call(this.allShows, (slot) => {
+                    let start = moment(slot.startTime, "HH:mm:ss").day(slot.day + 1);
+                    let end = moment(slot.endTime, "HH:mm:ss").day(slot.day + 1);
+
+                    return now.isBetween(start, end);
+                });
 
                 if (slot) return slot.show;
                 else return null;
@@ -55,8 +60,17 @@
         }
     });
 
-    nodecg.listenFor("urf:nowplaying", function(track) {
-        app.nowplaying = track;
+    nodecg.Replicant("urf:nowplaying").on("change", function(track) {
+        if (track == null) {
+            app.nowplaying = null;
+            return;
+        }
+
+        app.nowplaying = {
+            title: track.name,
+            artist: track.artist["#text"],
+            album: track.album["#text"]
+        };
     });
 
     let shows = nodecg.Replicant("urf:shows");

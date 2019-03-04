@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="assets/nowplaying.css"/>
         <link rel="stylesheet" href="assets/css/fork-awesome.min.css"/>
+        <script src="../bower_components/moment/min/moment.min.js"></script>
         <script src="assets/vue.min.js"></script>
     </head>
     <body>
@@ -24,11 +25,13 @@
             <div class="bottom infobox">
                 <video class="spinner" src="assets/spinner.webm" loop autoplay></video>
                 <div class="content">
-                    <div class="now-playing" v-if="nowplaying != null">
-                        <div>Now Playing: {{ nowplaying.title }}</div>
-                    </div>
-                    <div class="now-playing" v-if="currentShow != null">
-                        <div>Now Online: {{ currentShow.name }}</div>
+                    <div class="left-side">
+                        <div class="now-playing" v-if="nowplaying != null">
+                            <div>Now Playing: {{ nowplaying.artist }} - {{ nowplaying.title }}</div>
+                        </div>
+                        <div class="now-playing" v-if="currentShow != null">
+                            <div>Now Online: {{ currentShow.name }}</div>
+                        </div>
                     </div>
                     <div class="socials">
                         <span><i class="fa fa-twitter"></i> @urfofficial</span>

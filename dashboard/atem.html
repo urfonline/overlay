@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="styles/global.css"/>
+	</head>
+	<body>
+        <button id="cut">Cut</button>
+        <p>Instant Cut</p>
+        <div id="scenes">
+			<button class="selector" data-index="3">Presenter</button>
+			<button class="selector" data-index="4">Guests</button>
+        </div>
+        <script>
+        document.querySelector("#cut").onclick = function(ev) {
+            nodecg.sendMessage("atem:cut");
+        }
+
+        function handleInstant(ev) {
+            nodecg.sendMessage("atem:set-program", parseInt(ev.currentTarget.getAttribute("data-index")));
+        }
+
+		document.querySelectorAll(".selector").forEach((el) => el.onclick = handleInstant);
+        </script>
+	</body>
+</html>

@@ -82,6 +82,10 @@ h1, h2, h3 {
     z-index: 20;
 }
 
+.bottom .left-side {
+    float: left;
+}
+
 .bottom .spinner {
     position: absolute;
     width: 128px;
