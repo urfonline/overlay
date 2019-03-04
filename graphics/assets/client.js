@@ -35,7 +35,7 @@ const app = new Vue({
             var amount = parseInt(donation.amount).toFixed(0);
             this.notification = {
                 title: `£${amount} from ${donation.donorDisplayName}`,
-                body: donation.message.slice(0, 40) + (donation.message.length > 40 ? "..." : "")
+                body: "Thank you!"
             };
 
             this.timer = setTimeout(this.clearDonation, 8000);

@@ -17,7 +17,6 @@ class JustGivingClient {
         this.lastId = null;
 
         this.sendDonation = (donation) => {
-            console.log(donation);
             nodecg.sendMessage("urf:donation", donation);
         }
     }
