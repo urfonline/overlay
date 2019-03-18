@@ -37,6 +37,16 @@
 
                 if (slot) return slot.show;
                 else return null;
+            },
+            promoImage: function() {
+                if (this.currentPromo == null) return null;
+
+                var banner = this.currentPromo.show.banner;
+                var resource = (banner != "") ? banner : this.currentPromo.show.cover.resource;
+
+                if (resource == "") return "";
+
+                return 'https://urf.imgix.net/' + resource + '?w=1280&h=592&auto=format&q=80&fit=crop&crop=faces';
             }
         },
         methods: {

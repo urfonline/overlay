@@ -1,0 +1,11 @@
+version: '3'
+services:
+    overlay:
+        build: .
+        volumes:
+        - /etc/nodecg:/usr/src/app/cfg
+        ports:
+        - "9090:9090"
+        labels:
+            traefik.enable: true
+            traefik.domain: overlay.urfonline.com

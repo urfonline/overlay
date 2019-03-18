@@ -9,7 +9,7 @@ module.exports = function (nodecg) {
 	atem.init(nodecg);
 	lastfm.init(nodecg);
 
-	got("https://api.urfonline.com/graphql?query={currentSlate{slots{id startTime endTime day show{name longDescription cover{resource}brandColor category{name color}emojiDescription}}}}", {
+	got("https://api.urfonline.com/graphql?query={currentSlate{slots{id startTime endTime day show{name shortDescription longDescription banner cover{resource}brandColor category{name color}emojiDescription}}}}", {
 		json: true
 	}).then((res) => {
 		return res.body.data.currentSlate.slots;

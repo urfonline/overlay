@@ -16,9 +16,9 @@
                         <div class="post-content">
                             <div class="title">{{ currentPromo.show.name }}</div>
                             <div class="time">Live {{ formatPromoTime() }}</div>
-                            <div class="desc">{{ currentPromo.show.longDescription }}</div>
+                            <div class="desc">{{ currentPromo.show.shortDescription }}</div>
                         </div>
-                        <img class="cover" v-if="currentPromo.show.cover.resource != ''" v-bind:src="'https://urf.imgix.net/' + currentPromo.show.cover.resource + '?w=1280&h=592&auto=format&q=80&fit=crop&crop=faces'"/>
+                        <img class="cover" v-if="currentPromo.show.cover.resource != ''" v-bind:src="promoImage"/>
                     </div>
                 </transition>
             </div>

@@ -16,5 +16,5 @@ module.exports.init = function(nodecg) {
 
     nodecg.listenFor("atem:set-program", function(index) {
         plugin.atem.changeProgramInput(index);
-    })
+    });
 }
