@@ -15,7 +15,7 @@
         }
     });
 
-    var jingles = nodecg.Replicant("assets:jingles");
+    var jingles = nodecg.Replicant("assets:jingles", { defaultValue: [] });
 
     jingles.on("change", (val) => app.jingles = val);
 })();
