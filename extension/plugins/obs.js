@@ -21,6 +21,7 @@ module.exports.init = function(nodecg) {
     plugin.sceneList = nodecg.Replicant("obs:scenes", { defaultValue: [] });
     plugin.currentScene = nodecg.Replicant("obs:currentScene", { defaultValue: "", persist: false });
     plugin.previewScene = nodecg.Replicant("obs:currentPreview", { defaultValue: "", persist: false });
+    plugin.streaming = nodecg.Replicant("obs:isStreaming", { defaultValue: false, persist: false });
 
     let obs = plugin.obs;
 
@@ -45,6 +46,10 @@ module.exports.init = function(nodecg) {
 
     obs.on("PreviewSceneChanged", function(data) {
         plugin.previewScene.value = data.sceneName;
+    });
+
+    obs.on("StreamStatus", function(data) {
+        plugin.streaming.value = data.streaming;
     });
 
     obs.on("error", function(err) {
@@ -72,4 +77,12 @@ module.exports.init = function(nodecg) {
 			"with-transition": { "name": transition }
 		});
 	});
+
+    nodecg.listenFor("obs:start-stream", function() {
+        obs.send("StartStreaming");
+    });
+
+    nodecg.listenFor("obs:stop-stream", function() {
+        obs.send("StopStreaming");
+    });
 }

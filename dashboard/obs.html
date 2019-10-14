@@ -3,52 +3,92 @@
 	<head>
 		<meta charset="UTF-8">
         <link rel="stylesheet" href="styles/global.css"/>
+		<script src="../bower_components/vue/dist/vue.min.js"></script>
+		<style>
+		.scenes, .quick-actions {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.scene,  .quick-actions > button {
+			margin: 3px;
+			flex: 1 0 40%;
+		}
+
+		 .quick-actions > button {
+			 height: 50px;
+		 }
+		</style>
 	</head>
 	<body>
-        <button id="cut">Cut</button>
-        <button id="fade">Fade</button>
-		<div>Preview: <span id="previewscene">...</span></div>
-		<div>Program: <span id="currentscene">...</span></div>
-        <p>Set Scene</p>
-        <div id="scenes">
-
-        </div>
+		<div id="app">
+			<div v-if="isStreaming" class="red banner">
+				NOW LIVE
+			</div>
+			<div class="quick-actions">
+	        	<button v-on:click="cut">Cut</button>
+	        	<button v-on:click="fade">Fade</button>
+				<button class="error" v-if="isStreaming" v-on:click="startStream">Stop Stream</button>
+				<button class="success" v-else v-on:click="stopStream">Start Stream</button>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Preview</th>
+						<th>Program</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ previewScene }}</td>
+						<td>{{ programScene }}</td>
+					</tr>
+				</tbody>
+			</table>
+	        <p>Set Scene</p>
+	        <div class="scenes">
+				<button class="scene" v-for="scene in scenes" v-on:click="setScene(scene)">
+					{{ scene.name }}
+				</button>
+	        </div>
+		</div>
         <script>
-        document.querySelector("#cut").onclick = function(ev) {
-            nodecg.sendMessage("obs:cut");
-        }
-
-        document.querySelector("#fade").onclick = function(ev) {
-            nodecg.sendMessage("obs:transition", "Fade");
-        }
-
-        let scenesEl = document.querySelector("#scenes");
-        nodecg.Replicant("obs:scenes").on("change", function(scenes) {
-            scenesEl.innerHTML = "";
-
-            scenes.forEach((scene) => {
-                let btn = document.createElement("button");
-
-                btn.innerText = scene.name;
-                btn.style = "margin: 0 5px 5px 0;";
-                btn.onclick = function() {
-                    let name = `${scene.name}`;
-                    nodecg.sendMessage("obs:set-preview", name);
-                }
-
-                scenesEl.appendChild(btn);
-            });
-        });
-
-		let currentSceneEl = document.querySelector("#currentscene");
-		nodecg.Replicant("obs:currentScene").on("change", function(sceneName) {
-			currentSceneEl.innerText = sceneName;
-		});
-
-		let previewSceneEl = document.querySelector("#previewscene");
-		nodecg.Replicant("obs:currentPreview").on("change", function(sceneName) {
-			previewSceneEl.innerText = sceneName;
-		})
+		(function() {
+			var app = new Vue({
+				el: "#app",
+				data: {
+					isStreaming: false,
+					previewScene: null,
+					programScene: null,
+					scenes: []
+				},
+				created: function() {
+					this.bindReplicant("obs:scenes", "scenes");
+					this.bindReplicant("obs:isStreaming", "isStreaming");
+					this.bindReplicant("obs:currentScene", "programScene");
+					this.bindReplicant("obs:currentPreview", "previewScene");
+				},
+				methods: {
+					bindReplicant: function(name, property) {
+						nodecg.Replicant(name).on("change", (value) => {
+							this[property] = value;
+						});
+					},
+					cut: function() {
+						nodecg.sendMessage("obs:cut");
+					},
+					fade: function() {
+						nodecg.sendMessage("obs:transition", "Fade");
+					},
+					startStream: function() {
+						nodecg.sendMessage("obs:start-stream");
+					},
+					stopStream: function() {
+						nodecg.sendMessage("obs:stop-stream");
+					}
+				}
+			});
+		})();
         </script>
 	</body>
 </html>
