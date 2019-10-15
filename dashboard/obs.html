@@ -80,6 +80,9 @@
 					fade: function() {
 						nodecg.sendMessage("obs:transition", "Fade");
 					},
+					setScene: function(scene) {
+						nodecg.sendMessage("obs:set-preview", scene.name);
+					},
 					startStream: function() {
 						nodecg.sendMessage("obs:start-stream");
 					},
