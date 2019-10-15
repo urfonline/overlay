@@ -28,6 +28,8 @@ module.exports.init = function(nodecg) {
     function connect() {
         obs.connect(nodecg.bundleConfig.obsRemote).then(() => {
             plugin.fetchScenes();
+
+            return obs.send("SetHeartbeat", { enable: true });
         }).catch((err) => {
     		console.error("Failed to connect to OBS.");
     		// console.error(err);
@@ -48,7 +50,8 @@ module.exports.init = function(nodecg) {
         plugin.previewScene.value = data.sceneName;
     });
 
-    obs.on("StreamStatus", function(data) {
+    obs.on("Heartbeat", function(data) {
+        plugin.currentScene.value = data.currentScene;
         plugin.streaming.value = data.streaming;
     });
 
