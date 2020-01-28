@@ -12,7 +12,7 @@ class JustGivingClient {
             json: true
         });
 
-        this.pageName = "urf-24hbroadcast";
+        this.pageName = nodecg.bundleConfig.donations.pageName;
         this.totalRaised = nodecg.Replicant("urf:total-raised", { defaultValue: 0 });
         this.lastId = null;
 
