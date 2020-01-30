@@ -32,9 +32,15 @@ const app = new Vue({
                 return;
             }
 
-            var amount = parseInt(donation.amount).toFixed(0);
+            var amount;
+            if (donation.amount) {
+                amount = "£" + parseInt(donation.amount).toFixed(0);
+            } else {
+                amount = "Mystery donation";
+            }
+            
             this.notification = {
-                title: `£${amount} from ${donation.donorDisplayName}`,
+                title: `${amount} from ${donation.donorDisplayName}`,
                 body: "Thank you!"
             };
 
