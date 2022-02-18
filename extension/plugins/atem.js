@@ -9,7 +9,7 @@ module.exports.init = function(nodecg) {
     }
 
     plugin.atem.on("connected", function() {
-        console.log("Connected to ATEM");
+        // console.log("Connected to ATEM");
     });
 
     plugin.atem.on("disconnected", function() {

@@ -17,7 +17,7 @@ module.exports = function (nodecg) {
 	got(`https://api.urfonline.com/graphql?query=${GRAPH_QUERY}`, {
 		json: true
 	}).then((res) => {
-		return res.body.data.currentSlate.slots;
+		return res.body.data.stream.slate.slots;
 	}).then((slots) => {
 		nodecg.Replicant("urf:shows", { defaultValue: slots }).value = slots;
 	}).catch((err) => {
