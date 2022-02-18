@@ -1,8 +1,7 @@
-FROM nodecg/nodecg
+FROM nodecg/nodecg:v1.6.1
 
-COPY --chown=nodecg:nodecg vendor dashboard extension graphics package.json /opt/nodecg/bundles/urf/
-WORKDIR /opt/nodecg/bundles/urf
+COPY . /usr/src/app/bundles/urf/
 
-RUN npm install --production
+RUN cd bundles/urf && npm install --production
 
-VOLUME /opt/nodecg/db /opt/nodecg/log /opt/nodecg/cfg
+VOLUME /usr/src/app/db /usr/src/app/log /usr/src/app/cfg
