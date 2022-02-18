@@ -20,6 +20,12 @@
   ],
   "nodecg": {
     "compatibleRange": "^1.1.1",
+    "mount": [
+      {
+        "directory": "vendor",
+        "endpoint": "vendor"
+      }
+    ],
     "dashboardPanels": [
       {
         "name": "urf",
