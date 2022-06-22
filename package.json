@@ -78,7 +78,7 @@
   "license": "MIT",
   "dependencies": {
     "atem-connection": "^0.9.0",
-    "got": "^9.3.2",
+    "got": "^11.8.5",
     "lastfm": "^0.9.3",
     "obs-websocket-js": "^1.2.0"
   }
