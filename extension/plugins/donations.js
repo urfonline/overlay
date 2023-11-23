@@ -7,6 +7,7 @@ class AbstractApiClient {
         this.client = client;
         this.pageName = pageName;
         this.events = new EventEmitter();
+        this.lastId = lastId;
     }
 
     fetchDonations() {}
