@@ -34,7 +34,7 @@ const app = new Vue({
 
             var amount;
             if (donation.amount) {
-                amount = "£" + parseInt(donation.amount).toFixed(0);
+                amount = "£" + donation.amount.toFixed(0);
             } else {
                 amount = "Mystery donation";
             }
