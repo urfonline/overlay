@@ -82,9 +82,9 @@ class JustGivingClient {
         this.totalRaised = nodecg.Replicant("urf:total-raised", { defaultValue: 0 });
 
         if (this.pageType === "fundraising") {
-            this.client = new FundraisingApiClient(httpClient, pageName, lastId);
+            this.client = new FundraisingApiClient(httpClient, pageName, this.lastId);
         } else if (this.pageType === "crowdfunding") {
-            this.client = new CrowdfundingApiClient(httpClient, pageName, lastId);
+            this.client = new CrowdfundingApiClient(httpClient, pageName, this.lastId);
         }
 
         this.client.events.on("new-donation", donation => {
